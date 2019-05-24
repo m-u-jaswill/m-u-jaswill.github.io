@@ -49,6 +49,9 @@
 			.catch(function(err) {
 				console.log('ServiceWorker registration failed: ', err);
 				console.error.bind(console);
+			})
+			.finally(function() {
+				cosole.log('why?');
 			});
 		console.log('通過');
 	}
