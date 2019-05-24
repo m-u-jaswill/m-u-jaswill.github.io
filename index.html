@@ -31,10 +31,15 @@
  <script>
 	<!-- service workerの登録関係 -->
 	if('serviceWorker' in navigator){
-		navigator.serviceWorker.register('/pwa/service_worker.js');
-		
-		navigator.serviceWorker.ready
+		navigator.serviceWorker.register('/pwa/service_worker.js')
 			.then(function(registration) {
+				return re
+			})
+			.catch(function(err) {
+				console.log('ServiceWorker registration failed: ', err);
+			});
+		
+		navigator.serviceWorker.ready.then(function(registration) {
 				console.log('通過1');
 				return registration.pushManager.subscribe({ userVisibleOnly: true });
 			})
