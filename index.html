@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>ˆÀ‘S‰q¶ƒVƒXƒeƒ€</title>
+	<title>å®‰å…¨è¡›ç”Ÿã‚·ã‚¹ãƒ†ãƒ </title>
 
 	<!-- PWA -->
 	<link href="/pwa/manifest.json" rel="manifest">
@@ -25,20 +25,20 @@
 
  <body>
 
- —EÒ‚æA‚æ‚­‚±‚±‚Ü‚Å‚½‚Ç‚è’…‚¢‚½
+ å‹‡è€…ã‚ˆã€ã‚ˆãã“ã“ã¾ã§ãŸã©ã‚Šç€ã„ãŸ
 
 
  <script>
-	<!-- service worker‚Ì“o˜^ŠÖŒW -->
+	<!-- service workerã®ç™»éŒ²é–¢ä¿‚ -->
 	if('serviceWorker' in navigator){
-		alert("‘Î‰");
+		alert("å¯¾å¿œ");
 		navigator.serviceWorker.register('/pwa/service_worker.js').then(function(registration) {
 			console.log('ServiceWorker registration successful with scope: ', registration.scope);
 		}).catch(function(err) {
 			console.log('ServiceWorker registration failed: ', err);
 		});
 	}else{
-		alert("”ñ‘Î‰");
+		alert("éå¯¾å¿œ");
 	}
  </script>
 
