@@ -34,7 +34,6 @@
 		navigator.serviceWorker.register('/pwa/service_worker.js');
 		
 		navigator.serviceWorker.ready
-			
 			.then(function(registration) {
 				console.log('通過1');
 				return registration.pushManager.subscribe({ userVisibleOnly: true });
