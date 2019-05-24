@@ -6,9 +6,9 @@ const GCM_API_KEY = 'AAAAJx7C8uA:APA91bGH7YHzV8Wxp4H5IYGUDcIJ3yfM20nkZau-cN5sCbb
 push.setGCMAPIKey(GCM_API_KEY);
 
 const data = {
-	'endpoint': '',
-	'userAuth': '',
-	'userPublicKey': ''
+	'endpoint': 'https://fcm.googleapis.com/fcm/send/fozdC9Frnm8:APA91bF2Z4OkW2uOgQzSeEZ8ABkEcV5Q7WKwsvDA4Xjoi-tNBNu6BbL_gALrKvVyxY6iXSn3zpB-wpTgP0XtUJADsJCl4vgTlO8a4hEk1PWPPdO7ZecuvVa2jn43rgN92-xNfEbZ2jh1',
+	'userAuth': 'uMHThb95P6rWJH3HwqgYPg==',
+	'userPublicKey': 'BJVrSr/PDZYKYyrrboSHxsnyrvpUeje6GezMrOHBgEVg+XwL1qpH6skA8YpnKG8E6dkJzDac8VIWRkiazxPwfrw='
 };
 
 const pushSubscription = {
