@@ -14,13 +14,13 @@
 	<link href="/pwa/images/icons/favicon.png" rel="icon" sizes="16x16 24x24 32x32 48x48 64x64 96x96" />
 	<link href="/pwa/images/icons/icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
 	<link href="/pwa/images/icons/icon-192x192.png" rel="icon" sizes="192x192" />
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
-	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)" />
 </head>
 
  <body>
@@ -31,18 +31,41 @@
  <script>
 	<!-- service workerの登録関係 -->
 	if('serviceWorker' in navigator){
-		alert("対応");
 		navigator.serviceWorker.register('/pwa/service_worker.js').then(function(registration) {
-			console.log('ServiceWorker registration successful with scope: ', registration.scope);
-		}).catch(function(err) {
-			console.log('ServiceWorker registration failed: ', err);
-		});
-	}else{
-		alert("非対応");
+		console.log('ServiceWorker registration successful with scope: ', registration.scope);
+	}).catch(function(err) {
+		console.log('ServiceWorker registration failed: ', err);
+	});
+	
+	<!-- パーミッション -->
+	Notification.requestPermission(state => {
+		if(state === 'granted'){
+
+		}
+	});
+
+	<!-- Push通知の登録 -->
+	function encodeBase64URL(buffer) {
+		return btoa(String.fromCharCode.apply(null, new Unit8Array(buffer))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+	}
+
+	navigator.serviceWorker.ready
+		.then(function(registration) {
+			return registration.pushManager.subscribe({
+				userVisibleOnly: true
+			})
+		})
+		.then(function subscription) {
+			console.log('GCM EndPoin is:' + subscription.endpoint);
+			var auth = subscription.getKey('auth') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) : '';
+			console.log('User Auth is:' + auth);
+			var publicKey = subscription.getKey('p256dh') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))) : '';
+			console.log('User PublicKey is:' + publicKey);
+		})
+		.catch(console.error.bind(console));
 	}
  </script>
 
-<?php echo $contents;?>
 </body>
 
 </html>
