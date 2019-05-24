@@ -33,28 +33,31 @@
 	if('serviceWorker' in navigator){
 		navigator.serviceWorker.register('/pwa/service_worker.js')
 		.then(function() {
-			navigator.serviceWorker.ready.then(function(registration) {
-				console.log('通過1');
-				return registration.pushManager.subscribe({ userVisibleOnly: true });
-			})
-			.then(function(subscription) {
-				console.log('通過2');
-				console.log('GCM EndPoin is:' + subscription.endpoint);
-				var auth = subscription.getKey('auth') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) : '';
-				console.log('User Auth is:' + auth);
-				var publicKey = subscription.getKey('p256dh') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))) : '';
-				console.log('User PublicKey is:' + publicKey);
-			})
-			.catch(function(err) {
-				console.log('ServiceWorker registration failed: ', err);
-				console.error.bind(console);
-			})
-			.finally(function() {
-				cosole.log('why?');
-			});
+			return navigator.serviceWorker.ready;
 		})
 		.catch(function(err) {
 			console.log('ServiceWorker registration failed: ', err);
+		});
+		
+		navigator.serviceWorker.ready
+		.then(function(registration) {
+			console.log('通過1');
+			return registration.pushManager.subscribe({ userVisibleOnly: true });
+		})
+		.then(function(subscription) {
+			console.log('通過2');
+			console.log('GCM EndPoin is:' + subscription.endpoint);
+			var auth = subscription.getKey('auth') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) : '';
+			console.log('User Auth is:' + auth);
+			var publicKey = subscription.getKey('p256dh') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('p256dh')))) : '';
+			console.log('User PublicKey is:' + publicKey);
+		})
+		.catch(function(err) {
+			console.log('ServiceWorker registration failed: ', err);
+			console.error.bind(console);
+		})
+		.finally(function() {
+			cosole.log('why?');
 		});
 		
 		console.log('通過');
