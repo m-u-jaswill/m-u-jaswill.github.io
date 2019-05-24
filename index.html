@@ -32,15 +32,8 @@
 	<!-- service workerの登録関係 -->
 	if('serviceWorker' in navigator){
 		navigator.serviceWorker.register('/pwa/service_worker.js')
-			.then(function(registration) {
-				
-			})
-			.catch(function(err) {
-				console.log('ServiceWorker registration failed: ', err);
-			});
-		console.log("通過3");
-		
-		navigator.serviceWorker.ready.then(function(registration) {
+		.then(function() {
+			navigator.serviceWorker.ready.then(function(registration) {
 				console.log('通過1');
 				return registration.pushManager.subscribe({ userVisibleOnly: true });
 			})
@@ -59,6 +52,11 @@
 			.finally(function() {
 				cosole.log('why?');
 			});
+		})
+		.catch(function(err) {
+			console.log('ServiceWorker registration failed: ', err);
+		});
+		
 		console.log('通過');
 	}
 	
