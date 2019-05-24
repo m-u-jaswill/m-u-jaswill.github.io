@@ -1,1 +1,48 @@
-THIS IS A PEN
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>ˆÀ‘S‰q¶ƒVƒXƒeƒ€</title>
+
+	<!-- PWA -->
+	<link href="/pwa/manifest.json" rel="manifest">
+	<link href="/pwa/images/icons/favicon.png" rel="icon" sizes="16x16 24x24 32x32 48x48 64x64 96x96" />
+	<link href="/pwa/images/icons/icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+	<link href="/pwa/images/icons/icon-192x192.png" rel="icon" sizes="192x192" />
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-750x1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1242x2208.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+	<link rel="apple-touch-startup-image" href="/pwa/images/launch/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+</head>
+
+ <body>
+
+ —EÒ‚æA‚æ‚­‚±‚±‚Ü‚Å‚½‚Ç‚è’…‚¢‚½
+
+
+ <script>
+	<!-- service worker‚Ì“o˜^ŠÖŒW -->
+	if('serviceWorker' in navigator){
+		alert("‘Î‰");
+		navigator.serviceWorker.register('/pwa/service_worker.js').then(function(registration) {
+			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		}).catch(function(err) {
+			console.log('ServiceWorker registration failed: ', err);
+		});
+	}else{
+		alert("”ñ‘Î‰");
+	}
+ </script>
+
+<?php echo $contents;?>
+</body>
+
+</html>
