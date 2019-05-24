@@ -70,7 +70,7 @@
 		.then(function(registration) {
 			return registration.pushManager.subscribe({ userVisibleOnly: true });
 		})
-		.then(function subscription) {
+		.then(function(subscription) {
 			console.log('GCM EndPoin is:' + subscription.endpoint);
 			var auth = subscription.getKey('auth') ? btoa(String.fromCharCode.apply(null, new Uint8Array(subscription.getKey('auth')))) : '';
 			console.log('User Auth is:' + auth);
