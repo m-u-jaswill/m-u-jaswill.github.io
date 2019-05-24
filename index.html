@@ -35,7 +35,6 @@
 		navigator.serviceWorker.register('/pwa/service_worker.js')
 			.then(function(registration) {
 				console.log('ServiceWorker registration successful with scope: ', registration.scope);
-				return navigator.serviceWorker.ready;
 			}).catch(function(err) {
 				console.log('ServiceWorker registration failed: ', err);
 			});
@@ -44,7 +43,7 @@
 			.then(function(registration) {
 				return registration.pushManager.subscribe({
 					userVisibleOnly: true
-				})
+				});
 			})
 			.then(function(subscription) {
 				console.log('GCM EndPoin is:' + subscription.endpoint);
