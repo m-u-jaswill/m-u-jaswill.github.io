@@ -33,7 +33,7 @@ self.addEventListener('push', function(event) {
 	event.waitUntil(
 		self.registration.showNotification(title, {
 			body: body,
-			icon: 'https://m-u-jaswill.github.io/pwa/images/icon/favicon.png',
+			icon: 'https://m-u-jaswill.github.io/pwa/images/icons/favicon.png',
 			tag: 'push-notification-tag'
 		})
 	);
